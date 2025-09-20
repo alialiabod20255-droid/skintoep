@@ -16,10 +16,14 @@ class AppTheme {
   static const Color textSecondary = Color(0xFF7F8C8D);
   static const Color textLight = Color(0xFFBDC3C7);
 
+  // ألوان إضافية
+  static const Color cardShadow = Color(0x1A000000);
+  static const Color dividerColor = Color(0xFFE5E5E5);
+
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      fontFamily: 'Cairo', // خط عربي جميل
+      fontFamily: 'Cairo',
       
       // نظام الألوان
       colorScheme: const ColorScheme.light(
@@ -85,11 +89,23 @@ class AppTheme {
         ),
       ),
 
+      // أزرار النص
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: primaryColor,
+          textStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Cairo',
+          ),
+        ),
+      ),
+
       // البطاقات
       cardTheme: CardTheme(
         color: surfaceColor,
         elevation: 4,
-        shadowColor: Colors.black.withOpacity(0.1),
+        shadowColor: cardShadow,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -240,6 +256,67 @@ class AppTheme {
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
       ),
+
+      // شريط التنقل السفلي
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: surfaceColor,
+        selectedItemColor: primaryColor,
+        unselectedItemColor: textSecondary,
+        type: BottomNavigationBarType.fixed,
+        elevation: 8,
+      ),
+
+      // الفواصل
+      dividerTheme: const DividerThemeData(
+        color: dividerColor,
+        thickness: 1,
+        space: 1,
+      ),
+    );
+  }
+
+  static ThemeData get darkTheme {
+    return ThemeData(
+      useMaterial3: true,
+      fontFamily: 'Cairo',
+      brightness: Brightness.dark,
+      
+      colorScheme: const ColorScheme.dark(
+        primary: primaryColor,
+        secondary: secondaryColor,
+        surface: Color(0xFF1E1E1E),
+        background: Color(0xFF121212),
+        error: errorColor,
+        onPrimary: Colors.white,
+        onSecondary: Colors.white,
+        onSurface: Colors.white,
+        onBackground: Colors.white,
+        onError: Colors.white,
+      ),
+
+      // باقي الإعدادات مشابهة للثيم الفاتح مع تعديل الألوان
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Cairo',
+        ),
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+
+      cardTheme: CardTheme(
+        color: const Color(0xFF1E1E1E),
+        elevation: 4,
+        shadowColor: Colors.black.withOpacity(0.3),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        margin: const EdgeInsets.all(8),
+      ),
     );
   }
 
@@ -265,5 +342,23 @@ class AppTheme {
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [backgroundColor, surfaceColor],
+  );
+
+  static const LinearGradient successGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [successColor, Color(0xFF2ECC71)],
+  );
+
+  static const LinearGradient warningGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [warningColor, Color(0xFFE67E22)],
+  );
+
+  static const LinearGradient errorGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [errorColor, Color(0xFFC0392B)],
   );
 }

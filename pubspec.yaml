@@ -11,41 +11,25 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # UI والتصميم
   cupertino_icons:
-
-  # اختيار الصور
-  image_picker:
-
-  # الأذونات
-  permission_handler:
-
-  # معالجة الصور
-  image:
-
-  # إدارة الحالة
-  provider:
-
-  # التخزين المحلي
-  shared_preferences:
-
-  # الشبكة والـ HTTP
-  http:
-  dio:
-
-  # معالجة المسارات
-  path_provider:
-  path:
-
-  # الرسوم المتحركة
-  lottie:
-
-  # التحكم في الشاشة
-  flutter_native_splash:
-
-  # للذكاء الاصطناعي (اختياري - يتطلب إعداد إضافي)
-  # pytorch_mobile:
-  # tflite_flutter:
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  provider: ^6.1.1
+  shared_preferences: ^2.2.2
+  image_picker: ^1.0.4
+  permission_handler: ^11.0.1
+  http: ^1.1.0
+  dio: ^5.3.2
+  path_provider: ^2.1.1
+  flutter_staggered_animations: ^1.1.1
+  animations: ^2.0.8
+  page_transition: ^2.1.0
+  flutter_svg: ^2.0.9
+  lottie: ^2.7.0
+  cached_network_image: ^3.3.0
+  intl: ^0.18.1
+  uuid: ^4.1.0
+  flutter_local_notifications: ^16.1.0
 
 dev_dependencies:
   flutter_test:
@@ -55,13 +39,11 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # الأصول
   assets:
     - assets/images/
     - assets/models/
     - assets/animations/
 
-  # الخطوط
   fonts:
     - family: Cairo
       fonts:
@@ -72,11 +54,3 @@ flutter:
           weight: 600
         - asset: assets/fonts/Cairo-Light.ttf
           weight: 300
-
-# إعدادات الشاشة الافتتاحية
-flutter_native_splash:
-  color: "#F8FFFE"
-  image: assets/images/splash_logo.png
-  android_12:
-    image: assets/images/splash_logo.png
-    color: "#F8FFFE"

@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 import '../utils/app_theme.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  final String title;
+  final bool showBackButton;
+  final List<Widget>? actions;
+  final VoidCallback? onBackPressed;
+
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    this.showBackButton = true,
+    this.actions,
+    this.onBackPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,93 +31,25 @@ class CustomAppBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: AppTheme.primaryColor.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(8),
+          if (showBackButton)
+            IconButton(
+              onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                color: AppTheme.textPrimary,
+              ),
             ),
-            child: const Icon(
-              Icons.medical_services,
-              color: AppTheme.primaryColor,
-              size: 24,
-            ),
-          ),
-          const SizedBox(width: 12),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'تشخيص الأمراض الجلدية',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppTheme.textPrimary,
-                  ),
-                ),
-                Text(
-                  'مدعوم بالذكاء الاصطناعي',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppTheme.textSecondary,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          IconButton(
-            onPressed: () => _showInfoDialog(context),
-            icon: const Icon(
-              Icons.info_outline,
-              color: AppTheme.textSecondary,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showInfoDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Row(
-          children: [
-            Icon(Icons.info, color: AppTheme.primaryColor),
-            SizedBox(width: 8),
-            Text('معلومات التطبيق'),
-          ],
-        ),
-        content: const Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'هذا التطبيق يستخدم تقنيات الذكاء الاصطناعي لتحليل صور الأمراض الجلدية وتقديم تشخيص أولي.',
-              style: TextStyle(height: 1.5),
-            ),
-            SizedBox(height: 16),
-            Text(
-              '⚠️ تنبيه مهم:',
-              style: TextStyle(
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
-                color: AppTheme.warningColor,
+                color: AppTheme.textPrimary,
               ),
+              textAlign: showBackButton ? TextAlign.start : TextAlign.center,
             ),
-            SizedBox(height: 8),
-            Text(
-              'هذا التطبيق للاستخدام التعليمي فقط ولا يغني عن استشارة الطبيب المختص.',
-              style: TextStyle(
-                color: AppTheme.textSecondary,
-                height: 1.5,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('حسناً'),
           ),
+          if (actions != null) ...actions!,
         ],
       ),
     );
