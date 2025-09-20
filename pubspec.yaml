@@ -1,0 +1,82 @@
+name: skin_diseases
+description: تطبيق تشخيص الأمراض الجلدية باستخدام الذكاء الاصطناعي
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI والتصميم
+  cupertino_icons:
+
+  # اختيار الصور
+  image_picker:
+
+  # الأذونات
+  permission_handler:
+
+  # معالجة الصور
+  image:
+
+  # إدارة الحالة
+  provider:
+
+  # التخزين المحلي
+  shared_preferences:
+
+  # الشبكة والـ HTTP
+  http:
+  dio:
+
+  # معالجة المسارات
+  path_provider:
+  path:
+
+  # الرسوم المتحركة
+  lottie:
+
+  # التحكم في الشاشة
+  flutter_native_splash:
+
+  # للذكاء الاصطناعي (اختياري - يتطلب إعداد إضافي)
+  # pytorch_mobile:
+  # tflite_flutter:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints:
+
+flutter:
+  uses-material-design: true
+
+  # الأصول
+  assets:
+    - assets/images/
+    - assets/models/
+    - assets/animations/
+
+  # الخطوط
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Regular.ttf
+        - asset: assets/fonts/Cairo-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Cairo-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Cairo-Light.ttf
+          weight: 300
+
+# إعدادات الشاشة الافتتاحية
+flutter_native_splash:
+  color: "#F8FFFE"
+  image: assets/images/splash_logo.png
+  android_12:
+    image: assets/images/splash_logo.png
+    color: "#F8FFFE"
